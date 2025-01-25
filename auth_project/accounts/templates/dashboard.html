@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>Hello, {{ user.username }}!</h2>
+<p>Welcome to this brilliant example of an authentication app with cutting-edge features. Wanna try them?</p>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function() {
+            const messages = document.querySelector('.messages');
+            if (messages) {
+                messages.style.display = 'none';
+            }
+        }, 3000);  // Adjust the time as needed
+    </script>
+{% endif %}
+<div class="dashboard-buttons">
+    <a href="{% url 'profile' %}"><button>Profile</button></a>
+    <a href="{% url 'change_password' %}"><button>Change Password</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+</div>
+{% endblock %}
